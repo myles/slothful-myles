@@ -27,7 +27,10 @@ jobs:
     - name: Deploy datasets to Vercel
       env:
         VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        VERCEL_PROJECT: slothful-myles
+        VERCEL_SCOPE: team_zMUI4sQyIJCEJwCyZPlYaQ1b
       run: |-
         poetry run datasette publish vercel *.db \
           --token $VERCEL_TOKEN \
-          --project slothful-myles
+          --project $VERCEL_PROJECT \
+          --scope $VERCEL_SCOPE
