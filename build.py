@@ -10,7 +10,7 @@ logging.basicConfig(level=logging.DEBUG, format="%(levelname)s - %(message)s")
 
 def process_csv_file_to_df(csv_path: Path):
     """
-    Process a CSV file so it can be convert to a SQL database.
+    Process a CSV file, so it can be converted to a SQL database.
     """
     csv_df = pd.read_csv(csv_path)
     csv_df.table_name = csv_path.stem
@@ -29,7 +29,6 @@ def build_dataset_database(
     logger.info(f"Started building the dataset for {dataset_slug}")
 
     db_path = root_path / f"{dataset_slug}.db"
-    db_exists = db_path.exists()
     connection = sqlite3.connect(db_path)
 
     data_frames = []
@@ -59,6 +58,11 @@ def main(root_path: Path = None):
     for dataset_path in root_path.iterdir():
         # If it's not a directory then we know it's not a dataset.
         if dataset_path.is_dir() is False:
+            continue
+
+        # If the directory is hidden we should just ignore it and move on to
+        # the next one.
+        if dataset_path.name.startswith(".") is True:
             continue
 
         build_dataset_database(
