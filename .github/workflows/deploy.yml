@@ -32,7 +32,7 @@ jobs:
         VERCEL_SCOPE: team_zMUI4sQyIJCEJwCyZPlYaQ1b
       run: |-
         poetry run datasette publish vercel *.db \
-          --metadata metadata.json
+          --metadata metadata.json \
           --token $VERCEL_TOKEN \
           --project $VERCEL_PROJECT \
           --scope $VERCEL_SCOPE
