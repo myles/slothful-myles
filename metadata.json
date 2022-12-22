@@ -1,3 +1,8 @@
-title: slothful-myles
-about: myles/slothful-myles
-about_url: https://github.com/myles/slothful-myles
+{
+  "title": "slothful-myles",
+  "databases": {
+    "canadian-municipalities": {
+      "source_url": "https://www.canada.ca/en/revenue-agency/services/charities-giving/other-organizations-that-issue-donation-receipts-qualified-donees/other-qualified-donees-listings.html"
+    }
+  }
+}
