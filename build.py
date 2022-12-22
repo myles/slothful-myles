@@ -1,14 +1,11 @@
 import logging
-from pathlib import Path
 import sqlite3
+from pathlib import Path
+
 import pandas as pd
 
-
 logger = logging.getLogger(__file__)
-logging.basicConfig(
-    level=logging.DEBUG,
-    format="%(levelname)s - %(message)s",
-)
+logging.basicConfig(level=logging.DEBUG, format="%(levelname)s - %(message)s")
 
 
 def process_csv_file_to_df(csv_path: Path):
@@ -40,24 +37,19 @@ def build_dataset_database(
     for csv_path in dataset_path.glob("*.csv"):
         logger.info(f"Found CSV file {csv_path.name}")
         data_frames.append(process_csv_file_to_df(csv_path=csv_path))
-    
+
     for df in data_frames:
         table_exists = connection.execute(
             """
             SELECT COUNT(1) FROM sqlite_master WHERE type="table" AND name=?
             """,
-            [df.table_name]
+            [df.table_name],
         ).fetchone()[0]
 
         if table_exists:
             connection.execute(f"DROP TABLE [{df.table_name}]")
 
-        df.to_sql(
-            df.table_name,
-            connection,
-            if_exists="append",
-            index=False
-        )
+        df.to_sql(df.table_name, connection, if_exists="append", index=False)
 
 
 def main(root_path: Path = None):

@@ -9,8 +9,11 @@ python = "^3.9"
 datasette = "^0.63.3"
 datasette-publish-vercel = "^0.14.2"
 pandas = "^1.5.2"
+lxml = "^4.9.2"
 
 [tool.poetry.dev-dependencies]
+black = "^22.12.0"
+isort = "^5.11.4"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
