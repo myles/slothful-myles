@@ -3,7 +3,9 @@ name: ETL
 on:
   workflow_dispatch:
     schedule:
+      - cron: 0 8 * * * # Every dat at 8am
       - cron: 0 8 * * MON  # Every Monday at 8am
+      - cron: 0 8 1 * * # Every 1st of the month at 8am
 
 jobs:
   build:
