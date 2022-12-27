@@ -4,6 +4,8 @@ from pathlib import Path
 
 import pandas as pd
 
+from etl.settings import DATA_PATH
+
 logger = logging.getLogger(__file__)
 logging.basicConfig(level=logging.DEBUG, format="%(levelname)s - %(message)s")
 
@@ -13,7 +15,7 @@ def process_csv_file_to_df(csv_path: Path):
     Process a CSV file, so it can be converted to a SQL database.
     """
     csv_df = pd.read_csv(csv_path)
-    csv_df.table_name = csv_path.stem
+    csv_df.table_name = csv_path.stem.replace('-', '_')
 
     return csv_df
 
@@ -51,11 +53,8 @@ def build_dataset_database(
         df.to_sql(df.table_name, connection, if_exists="append", index=False)
 
 
-def main(root_path: Path = None):
-    if root_path is None:
-        root_path = Path(__file__).parent.absolute()
-
-    for dataset_path in root_path.iterdir():
+def main():
+    for dataset_path in DATA_PATH.iterdir():
         # If it's not a directory then we know it's not a dataset.
         if dataset_path.is_dir() is False:
             continue
@@ -67,7 +66,7 @@ def main(root_path: Path = None):
 
         build_dataset_database(
             dataset_path=dataset_path,
-            root_path=root_path,
+            root_path=DATA_PATH,
         )
 
 

@@ -60,7 +60,7 @@ jobs:
           github.event.schedule == '0 8 * * MON'
           || github.event_name == 'workflow_dispatch'
         run: |-
-          poetry run python canadian-municipalities/scrape.py
+          poetry run python etl/scrapers/canada/municipalities.py
 
       - id: etl-monthly
         name: "Run monthly ETL 📆"

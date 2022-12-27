@@ -3,6 +3,9 @@ name = "slothful-myles"
 version = "1.0.0"
 description = ""
 authors = ["Myles Braithwaite <me@mylesbraithwaite.com>"]
+packages = [
+    { include = "etl" }
+]
 
 [tool.poetry.dependencies]
 python = "^3.9"

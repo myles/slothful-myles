@@ -3,6 +3,8 @@ from typing import List
 
 import pandas as pd
 
+from etl.settings import DATA_PATH
+
 BASE_URL = "https://www.canada.ca/en/revenue-agency/services/charities-giving/other-organizations-that-issue-donation-receipts-qualified-donees/other-qualified-donees-listings"
 
 CRA_LIST_OF_MUNICIPALITIES = {
@@ -72,8 +74,8 @@ def write_df_to_csv_file(df: pd.DataFrame, path: Path):
 
 
 def main():
-    dataset_dir_path = Path(__file__).parent.absolute()
-    dataset_csv_path = dataset_dir_path / "canadian-municipalities.csv"
+    dataset_dir_path = DATA_PATH / "canada"
+    dataset_csv_path = dataset_dir_path / "municipalities.csv"
 
     df = scrape_municipalities()
     write_df_to_csv_file(df, dataset_csv_path)

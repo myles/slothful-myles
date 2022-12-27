@@ -6,6 +6,7 @@ on:
       - 'main'
     paths:
       - '**.csv'
+      - 'metadata.json'
 
 jobs:
 
@@ -48,7 +49,7 @@ jobs:
 
       - id: build-datasets
         name: "Build datasets 🚧"
-        run: poetry run python build.py
+        run: poetry run python etl/build.py
 
       - id: deploy
         name: "Deploy datasets to Vercel 🚀"
@@ -57,7 +58,7 @@ jobs:
           VERCEL_PROJECT: slothful-myles
           VERCEL_SCOPE: team_zMUI4sQyIJCEJwCyZPlYaQ1b
         run: |-
-          poetry run datasette publish vercel *.db \
+          poetry run datasette publish vercel data/*.db \
             --metadata metadata.json \
             --token $VERCEL_TOKEN \
             --project $VERCEL_PROJECT \

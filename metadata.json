@@ -1,8 +1,12 @@
 {
   "title": "slothful-myles",
   "databases": {
-    "canadian-municipalities": {
-      "source_url": "https://www.canada.ca/en/revenue-agency/services/charities-giving/other-organizations-that-issue-donation-receipts-qualified-donees/other-qualified-donees-listings.html"
+    "canada": {
+      "tables": {
+        "municipalities": {
+          "source_url": "https://www.canada.ca/en/revenue-agency/services/charities-giving/other-organizations-that-issue-donation-receipts-qualified-donees/other-qualified-donees-listings.html"
+        }
+      }
     }
   }
 }
