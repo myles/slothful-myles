@@ -50,7 +50,7 @@ jobs:
         name: "Run daily ETL 📆"
         if: >-
           github.event.schedule == "0 8 * * *"
-          || github.event.workflow_dispatch
+          || github.event_name == 'workflow_dispatch'
         run: |-
           echo "Hi"
 
@@ -58,7 +58,7 @@ jobs:
         name: "Run weekly ETL 📆"
         if: >-
           github.event.schedule == '0 8 * * MON'
-          || github.event.workflow_dispatch
+          || github.event_name == 'workflow_dispatch'
         run: |-
           poetry run python canadian-municipalities/scrape.py
 
@@ -66,7 +66,7 @@ jobs:
         name: "Run monthly ETL 📆"
         if: >-
           github.event.schedule == '0 8 1 * *'
-          || github.event.workflow_dispatch
+          || github.event_name == 'workflow_dispatch'
         run: |-
           echo "Hi"
 
