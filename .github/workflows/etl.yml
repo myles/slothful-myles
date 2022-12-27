@@ -70,15 +70,16 @@ jobs:
         run: |-
           echo "Hi"
 
+      - id: dead-mans-switch
+        name: "Dead Man's Switch 💀"
+        run: curl https://nosnch.in/18ce38e024 &> /dev/null
+
       - id: commit-and-push
         name: "Commit and push changes if anything changed 🚀"
         run: |-
           git config user.name "ETL"
           git config user.email "actions@users.noreply.github.com"
           git add -A
-          git commit -m "Latest data: ${date -u}" || exit 0
+          timestamp=$(date -u)
+          git commit -m "Latest data: ${timestamp}" || exit 0
           git push
-
-      - id: dead-mans-switch
-        name: "Dead Man's Switch 💀"
-        run: curl https://nosnch.in/18ce38e024 &> /dev/null

@@ -8,24 +8,46 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+      - id: checkout
+        name: "Checkout 🛎"
+        uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v1
-      with:
-        python-version: 3.7
+      - id: setup-python
+        name: "Setup Python ${{ matrix.python-version }} 🏗"
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        python -m pip install --upgrade poetry
-        poetry install
+      - id: setup-poetry
+        name: "Setup Poetry 📝"
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
 
-    - name: Build datasets
-      run: |-
-        poetry run python build.py
+      - id: get-cache-poetry-directory
+        name: "Get poetry's cache directory 🔎"
+        run: |
+          echo "::set-output name=dir::$(poetry config cache-dir)"
+
+      - id: cache-poetry-directory
+        name: "Cache poetry 📦"
+        uses: actions/cache@v3.0.11
+        with:
+          path: ${{ steps.get-cache-poetry-directory.outputs.dir }}
+          key: ${{ runner.os }}-poetry-${{ hashFiles('poetry.lock') }}
+          restore-keys: ${{ runner.os }}-poetry-
+
+      - id: install-dependencies
+        name: "Install dependencies 👨🏻‍💻"
+        run: |
+          poetry install
+
+      - id: build-datasets
+        name: "Build datasets 🚧"
+        run: |-
+          poetry run python build.py
     
-    - name: Deploy datasets to Vercel
+    - id: deploy
+      name: "Deploy datasets to Vercel 🚀"
       env:
         VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         VERCEL_PROJECT: slothful-myles
