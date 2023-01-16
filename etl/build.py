@@ -15,7 +15,7 @@ def process_csv_file_to_df(csv_path: Path):
     Process a CSV file, so it can be converted to a SQL database.
     """
     csv_df = pd.read_csv(csv_path)
-    csv_df.table_name = csv_path.stem.replace('-', '_')
+    csv_df.table_name = csv_path.stem.replace("-", "_")
 
     return csv_df
 
