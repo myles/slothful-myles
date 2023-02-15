@@ -11,12 +11,15 @@ packages = [
 python = "^3.9"
 
 astral = "^3.2"
-pandas = "^1.5.2"
-pytz = "^2022.7.1"
-lxml = "^4.9.2"
 
 datasette = "^0.63.3"
+datasette-gzip = "^0.2"
+datasette-hashed-urls = "^0.4"
+datasette-ics = "^0.5.2"
 datasette-publish-vercel = "^0.14.2"
+lxml = "^4.9.2"
+pandas = "^1.5.2"
+pytz = "^2022.7.1"
 
 [tool.poetry.dev-dependencies]
 black = "^22.12.0"

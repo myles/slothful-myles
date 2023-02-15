@@ -1,6 +1,7 @@
 import datetime
-from typing import TypedDict
 from pathlib import Path
+from typing import TypedDict
+
 import pandas as pd
 import pytz
 from astral import Depression, LocationInfo
@@ -101,4 +102,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

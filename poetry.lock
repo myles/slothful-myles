@@ -34,6 +34,21 @@ test = ["contextlib2", "coverage[toml] (>=4.5)", "hypothesis (>=4.0)", "mock (>=
 trio = ["trio (>=0.16,<0.22)"]
 
 [[package]]
+name = "arrow"
+version = "1.2.3"
+description = "Better dates & times for Python"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "arrow-1.2.3-py3-none-any.whl", hash = "sha256:5a49ab92e3b7b71d96cd6bfcc4df14efefc9dfa96ea19045815914a6ab6b1fe2"},
+    {file = "arrow-1.2.3.tar.gz", hash = "sha256:3934b30ca1b9f292376d9db15b19446088d12ec58629bc3f0da28fd55fb633a1"},
+]
+
+[package.dependencies]
+python-dateutil = ">=2.7.0"
+
+[[package]]
 name = "asgi-csrf"
 version = "0.9"
 description = "ASGI middleware for protecting against CSRF attacks"
@@ -51,6 +66,21 @@ python-multipart = "*"
 
 [package.extras]
 test = ["asgi-lifespan", "httpx (>=0.16)", "pytest", "pytest-asyncio", "pytest-cov", "starlette"]
+
+[[package]]
+name = "asgi-gzip"
+version = "0.2"
+description = "gzip middleware for ASGI applications, extracted from Starlette"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "asgi-gzip-0.2.tar.gz", hash = "sha256:719b8deb396e2646a80079cc199a0741ebc03a15760bbeda05fe748a58431ff1"},
+    {file = "asgi_gzip-0.2-py3-none-any.whl", hash = "sha256:ec8bcefdc0d8b828bbe3a997b0bde253f2e29a590ca5e539eee09e1822d64ef8"},
+]
+
+[package.extras]
+test = ["httpx", "pytest", "requests", "starlette", "trio"]
 
 [[package]]
 name = "asgiref"
@@ -81,6 +111,25 @@ files = [
 
 [package.dependencies]
 tzdata = {version = "*", markers = "sys_platform == \"win32\""}
+
+[[package]]
+name = "attrs"
+version = "22.2.0"
+description = "Classes Without Boilerplate"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "attrs-22.2.0-py3-none-any.whl", hash = "sha256:29e95c7f6778868dbd49170f98f8818f78f3dc5e0e37c0b1f474e3561b240836"},
+    {file = "attrs-22.2.0.tar.gz", hash = "sha256:c9227bfc2f01993c03f68db37d1d15c9690188323c067c641f1a35ca58185f99"},
+]
+
+[package.extras]
+cov = ["attrs[tests]", "coverage-enable-subprocess", "coverage[toml] (>=5.3)"]
+dev = ["attrs[docs,tests]"]
+docs = ["furo", "myst-parser", "sphinx", "sphinx-notfound-page", "sphinxcontrib-towncrier", "towncrier", "zope.interface"]
+tests = ["attrs[tests-no-zope]", "zope.interface"]
+tests-no-zope = ["cloudpickle", "cloudpickle", "hypothesis", "hypothesis", "mypy (>=0.971,<0.990)", "mypy (>=0.971,<0.990)", "pympler", "pympler", "pytest (>=4.3.0)", "pytest (>=4.3.0)", "pytest-mypy-plugins", "pytest-mypy-plugins", "pytest-xdist[psutil]", "pytest-xdist[psutil]"]
 
 [[package]]
 name = "black"
@@ -207,6 +256,62 @@ rich = ["rich"]
 test = ["beautifulsoup4 (>=4.8.1)", "black (==22.10.0)", "blacken-docs (==1.12.1)", "cogapp (>=3.3.0)", "pytest (>=5.2.2)", "pytest-asyncio (>=0.17)", "pytest-timeout (>=1.4.2)", "pytest-xdist (>=2.2.1)", "trustme (>=0.7)"]
 
 [[package]]
+name = "datasette-gzip"
+version = "0.2"
+description = "Add gzip compression to Datasette"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "datasette-gzip-0.2.tar.gz", hash = "sha256:6ae8714e9fbc4d71b0a64d7833c13c641d9a98a615d57eaf4ad2abcb1658f0fd"},
+    {file = "datasette_gzip-0.2-py3-none-any.whl", hash = "sha256:d24d252234f5652a9e8f65a48090c816ab9a8af7ddc512a5d9363c55fbf5cd64"},
+]
+
+[package.dependencies]
+asgi-gzip = "*"
+datasette = "*"
+
+[package.extras]
+test = ["pytest", "pytest-asyncio"]
+
+[[package]]
+name = "datasette-hashed-urls"
+version = "0.4"
+description = "Optimize Datasette performance behind a caching proxy"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "datasette-hashed-urls-0.4.tar.gz", hash = "sha256:f6f9d69f9a4bd65947489b9a10f8143882abee444e24013bbc1cd430932c1358"},
+    {file = "datasette_hashed_urls-0.4-py3-none-any.whl", hash = "sha256:b719001a4c8a5c39cf654dd595df2d1ee93ede52253dbec7098c5a4631b80588"},
+]
+
+[package.dependencies]
+datasette = ">=0.61.1"
+
+[package.extras]
+test = ["pytest", "pytest-asyncio", "sqlite-utils"]
+
+[[package]]
+name = "datasette-ics"
+version = "0.5.2"
+description = "Datasette plugin for outputting iCalendar files"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "datasette-ics-0.5.2.tar.gz", hash = "sha256:61ba2c939338526d2ef46add8cb3279748f478d9254981f36f8c7bd50b46f4e0"},
+    {file = "datasette_ics-0.5.2-py3-none-any.whl", hash = "sha256:2ca8f5927adf2255aaa1e750e3b17fe3cf6fc089841c578db42c37f9ae32471f"},
+]
+
+[package.dependencies]
+datasette = ">=0.49"
+ics = "0.7.2"
+
+[package.extras]
+test = ["pytest", "pytest-asyncio"]
+
+[[package]]
 name = "datasette-publish-vercel"
 version = "0.14.2"
 description = "Datasette plugin for publishing data using Vercel"
@@ -297,6 +402,25 @@ files = [
 [package.extras]
 docs = ["Sphinx", "pylons-sphinx-themes", "watchdog"]
 testing = ["mock", "pytest", "pytest-cov", "watchdog"]
+
+[[package]]
+name = "ics"
+version = "0.7.2"
+description = "Python icalendar (rfc5545) parser"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "ics-0.7.2-py2.py3-none-any.whl", hash = "sha256:5fcf4d29ec6e7dfcb84120abd617bbba632eb77b097722b7df70e48dbcf26103"},
+    {file = "ics-0.7.2.tar.gz", hash = "sha256:6743539bca10391635249b87d74fcd1094af20b82098bebf7c7521df91209f05"},
+]
+
+[package.dependencies]
+arrow = ">=0.11"
+attrs = ">=19.1.0"
+python-dateutil = "*"
+six = ">1.5"
+tatsu = ">4.2"
 
 [[package]]
 name = "idna"
@@ -826,6 +950,21 @@ files = [
 ]
 
 [[package]]
+name = "tatsu"
+version = "5.8.3"
+description = "TatSu takes a grammar in a variation of EBNF as input, and outputs a memoizing PEG/Packrat parser in Python."
+category = "main"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "TatSu-5.8.3-py2.py3-none-any.whl", hash = "sha256:0a836692e67247cad9f251e083b045b13345cc715e69a7fbc16522beaa0f2163"},
+    {file = "TatSu-5.8.3.zip", hash = "sha256:571ecbcdf33b7828c05e5cd95a8e8ad06af111c2c83a6a245be4d8f7c43de7bb"},
+]
+
+[package.extras]
+future-regex = ["regex"]
+
+[[package]]
 name = "tomli"
 version = "2.0.1"
 description = "A lil' TOML parser"
@@ -883,4 +1022,4 @@ standard = ["colorama (>=0.4)", "httptools (>=0.5.0)", "python-dotenv (>=0.13)",
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "3e02516f9391c9bf77fb999cc7a95464861c4e6657e487beef299d69c7141893"
+content-hash = "f0a1f35f9e0d8c7cb19fb610d9b7bd0e47e1c3deb7516590489211621175f274"

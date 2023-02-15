@@ -7,6 +7,25 @@
           "source_url": "https://www.canada.ca/en/revenue-agency/services/charities-giving/other-organizations-that-issue-donation-receipts-qualified-donees/other-qualified-donees-listings.html"
         }
       }
+    },
+    "time-of-day": {
+      "tables": {
+        "sun": {
+          "columns": {
+            "dawn": "Dawn is the time that marks the beginning of twilight before sunrise.",
+            "sunrise": "Sunrise (or sunup) is the moment when the upper rim of the Sun appears on the horizon in the morning.",
+            "noon": "Noon is the time when the Sun appears to contact the local celestial meridian.",
+            "sunset": "Sunset, also known as sundown, is the daily disappearance of the Sun below the horizon due to Earth's rotation.",
+            "dusk": "Dusk occurs at the darkest stage of twilight, or at the very end of astronomical twilight after sunset and just before nightfall."
+          }
+        }
+      },
+      "queries": {
+        "day-toronto": {
+          "title": "Day (Toronto)",
+          "sql": "select\n  rowid as event_uid,\n  'Day (' || name || ')' as event_name,\n  sunrise as event_dtstart,\n  sunset as event_dtend,\n  'UTC' as event_tzid\nfrom\n  sun\nwhere\n  date(sunrise) < date('now', '+1 month')\n  and date(sunrise) > date('now', '-1 month')\n  and name = 'Toronto'\n  and region = 'Canada'\norder by\n  sunrise desc"
+        }
+      }
     }
   }
 }
